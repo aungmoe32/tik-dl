@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@tobyg74/tiktok-api-dl": "^1.2.8",
+    "fb-downloader-scrapper": "^3.0.1",
     "next": "15.2.4",
     "rahad-all-downloader": "^2.1.18",
     "react": "^19.0.0",
