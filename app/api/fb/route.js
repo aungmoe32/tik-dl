@@ -14,8 +14,16 @@ export async function GET(request) {
 
   try {
     const result = await getFbVideoInfo(fbUrl);
-    return NextResponse.json(result);
+    const decoded = decodeHtmlEntities(result.title);
+    return NextResponse.json({ ...result, title: decoded });
   } catch (error) {
     return NextResponse.json({ error: error.message }, { status: 500 });
   }
+}
+
+function decodeHtmlEntities(htmlEntities) {
+  const decoded = htmlEntities.replace(/&#x([0-9a-fA-F]+);/g, (_, hex) =>
+    String.fromCodePoint(parseInt(hex, 16))
+  );
+  return decoded;
 }
